@@ -1,0 +1,12 @@
+[user]
+	email = sungyoon@sungyooncho.dev
+	name = Sungyoon Cho
+    signingkey = 0xA0A99BBFD87698E7
+[commit]
+    gpgsign = true
+[color]
+	ui = true
+[core]
+	editor = nvim
+[submodule]
+	recurse = true
