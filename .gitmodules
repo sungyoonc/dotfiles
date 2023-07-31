@@ -4,3 +4,6 @@
 [submodule "nvim/.config/nvim"]
 	path = nvim/.config/nvim
 	url = git@github.com:sungyoonc/dotfiles-nvim.git
+[submodule "alacritty/.config/alacritty/catppuccin"]
+	path = alacritty/.config/alacritty/catppuccin
+	url = https://github.com/catppuccin/alacritty.git
