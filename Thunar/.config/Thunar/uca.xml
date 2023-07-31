@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1611168259857250-1</unique-id>
+	<command>sh -c &apos;cd %f; if [ -x &quot;$(command -v alacritty)&quot; ]; then alacritty; else xfce4-terminal; fi&apos;</command>
+	<description>Opens alacritty in current directory. (xfce4-terminal as fallback)</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+</actions>
