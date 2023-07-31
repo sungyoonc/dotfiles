@@ -1,0 +1,3 @@
+for_window {
+    [app_id="firefox" title="Library"] floating enable, resize set width 1030 height 710
+}
