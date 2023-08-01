@@ -23,6 +23,7 @@ _darcs
 
 # Ignore catppuccin/alacritty file
 ^/.*/alacritty/catppuccin/\.editorconfig
+^/.*/alacritty/catppuccin/assets
 ^/.*/alacritty/catppuccin/assets/screenshot\.webp
 ^/.*/alacritty/catppuccin/README.*
 ^/.*/alacritty/catppuccin/LICENSE.*
