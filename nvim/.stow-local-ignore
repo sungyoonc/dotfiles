@@ -20,3 +20,5 @@ _darcs
 ^/\.config/nvim/README.*
 ^/\.config/nvim/LICENSE.*
 ^/\.config/mvim/COPYING
+
+\.stow-global-ignore
