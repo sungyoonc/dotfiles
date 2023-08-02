@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+stow -D --no-folding --target=$HOME */
+
+pushd .images > /dev/null
+stow -D --no-folding --target=$HOME */
+popd > /dev/null
