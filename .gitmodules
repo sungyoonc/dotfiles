@@ -10,3 +10,6 @@
 [submodule "spotify-player"]
 	path = spotify-player
 	url = git@github.com:sungyoonc-dotfiles/dotfiles-spotify-player.git
+[submodule ".images"]
+	path = .images
+	url = git@github.com:sungyoonc/dotfiles-images.git

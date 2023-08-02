@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
 stow --restow --no-folding --target=$HOME */
+
+pushd .images > /dev/null
+stow --restow --no-folding --target=$HOME */
+popd > /dev/null
