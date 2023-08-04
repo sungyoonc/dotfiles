@@ -19,8 +19,8 @@ _darcs
 
 ^/\.config/nvim/README.*
 ^/\.config/nvim/LICENSE.*
-^/\.config/mvim/COPYING
-^/\.config/mvim/temp_install
-^/\.config/mvim/temp_uninstall
+^/\.config/nvim/COPYING
+^/\.config/nvim/temp_install
+^/\.config/nvim/temp_uninstall
 
 \.stow-local-ignore
