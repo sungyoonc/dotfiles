@@ -15,7 +15,7 @@ engine:
     M-C-Backslash:
       behavior: !Mode Math
       result: ConsumeIfProcessed
-    Super-Space:
+    S-Space:
       behavior: !Toggle
       - Hangul
       - Latin
