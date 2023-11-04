@@ -19,170 +19,152 @@
 @import "frappe.css";
 
 * {
-    border: none;
+    /* border: none; */
     border-radius: 0;
-    font-family: UbuntuMono, "Font Awesome 6 Free";
+    font-family: "UbuntuMono Nerd Font", "Font Awesome 6 Free";
     font-weight: bold;
-    font-size: 14px;
+    font-size: 15px;
     min-height: 0;
+	transition-property: background-color;
+	transition-duration: 0.5s;
 }
 
-window#waybar {
-    background: transparent;
-    color: @text;
-/*    background-color: shade(@base, 0.9); */
-/*    border: 2px solid alpha(@crust, 0.3);*/
-/*    background: rgba(21, 18, 27, 0);
-    color: #cdd6f4;*/
+/* * { */
+/* 	font-family: JetBrainsMono Nerd Font; */
+/* 	font-size: 15px; */
+/* 	font-weight: bold; */
+/* 	border-radius: 0px; */
+/* 	transition-property: background-color; */
+/* 	transition-duration: 0.5s; */
+/* } */
+
+@keyframes blink_red {
+    to {
+        background-color: @red;
+        color: @mantle;
+    }
 }
 
-tooltip {
-    background: #1e1e2e;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #11111b;
-}
-
-#clock,
-#workspaces,
-#window,
-#tray,
-#idle_inhibitor,
-#custom-updates,
-#network,
-#pulseaudio,
-#battery,
-#custom-power {
-    color: @text;
-    background: @surface0;
-    padding: 0px 10px;
-    margin: 3px 0px;
-}
-
-/* Left Module */
-#clock {
-    color: @blue;
-    border-radius: 1em;
-    margin-left: 10px;
-}
-
-#workspaces {
-    background: @surface0;
-    border-radius: 1em;
-    margin-left: 10px;
-    padding-right: 0px;
-    padding-left: 0px;
-}
-
-#workspaces button {
-    border-radius: 1em;
-    padding: 0px;
-/* catppuccin gtk theme: padding 0px
-   Ark-Dark theme: padding 3px */
-    color: @crust;
-    margin-right: 0px;
-}
-
-#workspaces button.active {
-    color: @subtext1;
-}
-
-#workspaces button.focused {
-    color: @subtext1;
-/*    border-radius: 1em; */
-}
-
-#workspaces button.urgent {
-    color: @crust;
-    background: @maroon;
-/*    border-radius: 1em; */
-}
-
-#workspaces button:hover {
-    background: @crust;
-    color: @text;
-/*    border-radius: 1em; */
-}
-
-#mode {
-    margin-left: 10px;
-    padding-left: 5px;
-}
-
-/* Middle Module */
-
-#window {
-    min-width: 0px;
-    border-radius: 1em;
-    margin-left: 60px;
-    margin-right: 60px;
-    color: @lavender;
-}
-
-window#waybar.empty #window {  /* Hide when no text present */
- background:none;  
-}  
-
-/* Right Module */
-#tray { /* island */
-    border-radius: 1em;
-}
-
-#idle_inhibitor { /* start of island */
-    color: @red;
-    border-radius: 1em 0px 0px 1em;
-    border-right: 0px;
-    margin-left: 10px;
-}
-
-#custom-updates {
-    color: @peach;
-    border-left: 1em;
-    border-right: 0px;
-}
-
-#network {
-    color: @yellow;
-    border-left: 0px;
-    border-right: 0px;
-}
-
-#pulseaudio {
-    color: @green;
-    border-left: 0px;
-    border-right: 0px;
-}
-
-#battery { /* end of island */
+.warning, .critical, .urgent {
+	animation-name: blink_red;
+    animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    color: @sapphire;
-    border-radius: 0 1em 1em 0;
-    margin-right: 10px;
-    border-left: 0px;
-}
-/*
-#battery.warning {
-    color: orange;
-}
-#battery.critical {
-    color: red;
-}
-#battery.warning.discharging {
-    animation-name: blink-warning;
-    animation-duration: 3s;
-}
-#battery.critical.discharging {
-    animation-name: blink-critical;
-    animation-duration: 2s;
-}
-*/
-
-#custom-power { /* island */
-    color: @mauve;
-    border-radius: 1em;
-    margin-right: 1em;
 }
 
+window#waybar {
+	background-color: transparent;
+}
+
+window#waybar.hidden {
+    opacity: 0.5;
+}
+
+window > box {
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 15px;
+	background-color: @crust;
+	/* border-style: solid; */
+	/* border-width: 2px; */
+	/* border-color: rgb(171, 233, 179); */
+}
+
+#workspaces button {
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Sway & Hyprland */
+#workspaces button.focused,
+#workspaces button.active {
+	background-color: @pink;
+	color: @mantle;
+}
+
+#workspaces button.urgent {
+    background-color: @red;
+   	color: @mantle;
+}
+
+#workspaces button:hover {
+    background-color: @teal;
+    color: @mantle;
+}
+
+tooltip {
+  background: @surface0;
+}
+
+tooltip label {
+  color: @text;
+}
+
+#custom-launcher {
+    padding-left: 20px;
+    padding-right: 15px;
+    font-size: 18px;
+    color: @lavender;
+}
+
+#mode, #clock, #memory, #cpu, #idle_inhibitor, #temperature, #backlight, #pulseaudio, #network, #battery {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#mode {
+	margin-left: 10px;
+	background-color: @peach;
+    color: @mantle;
+}
+
+#memory {
+	padding-left: 25px;
+	color: @pink;
+}
+
+#cpu {
+	color: @teal;
+}
+
+#clock {
+	color: @text;
+}
+
+#idle_inhibitor {
+	color: @mauve;
+}
+
+#temperature {
+	color: @blue;
+}
+
+#backlight {
+	color: @peach;
+}
+
+#pulseaudio {
+	color: @rosewater;
+}
+
+#network {
+	color: @teal;
+}
+
+#battery.charging, #battery.full, #battery.discharging {
+	color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+	color: @red;
+}
+
+#custom-off {
+	color: @red;
+	font-size: 18px;
+	padding-left: 10px;
+	padding-right: 20px;
+}
