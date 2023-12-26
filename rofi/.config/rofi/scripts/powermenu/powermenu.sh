@@ -73,7 +73,7 @@ run_cmd() {
 		elif [[ $1 == '--hibernate' ]]; then
 			systemctl hibernate
 		elif [[ $1 == '--logout' ]]; then
-			if [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
+			if [[ "$XDG_CURRENT_DESKTOP" == 'Hyprland' ]]; then
 				# close all client windows
 				# required for graceful exit since many apps aren't good SIGNAL citizens
 				HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
@@ -81,13 +81,13 @@ run_cmd() {
 
 				# exit hyprland
 				hyprctl dispatch exit >>/tmp/hypr/hyprexitwithgrace.log 2>&1
-			elif [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
+			elif [[ "$XDG_CURRENT_DESKTOP" == 'openbox' ]]; then
 				openbox --exit
-			elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
+			elif [[ "$XDG_CURRENT_DESKTOP" == 'bspwm' ]]; then
 				bspc quit
-			elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
+			elif [[ "$XDG_CURRENT_DESKTOP" == 'i3' ]]; then
 				i3-msg exit
-			elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
+			elif [[ "$XDG_CURRENT_DESKTOP" == 'plasma' ]]; then
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
 			fi
 		fi
