@@ -1,0 +1,29 @@
+# https://github.com/SolDoesTech/HyprV4/blob/main/HyprV/mako/conf/config
+
+# GLOBAL
+max-history=100
+sort=-time
+
+# Options
+default-timeout=5000
+ignore-timeout=0
+max-visible=5
+layer=overlay
+
+[urgency=high]
+
+# Colors (Catppuccin Frappe)
+background-color=#303446
+text-color=#c6d0f5
+border-color=#8caaee
+progress-color=over #414559
+
+[urgency=low]
+default-timeout=2000
+
+[urgency=normal]
+default-timeout=5000
+
+[urgency=high]
+border-color=#ef9f76
+ignore-timeout=1  
