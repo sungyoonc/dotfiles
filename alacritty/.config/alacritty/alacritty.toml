@@ -1,5 +1,5 @@
 # ======================================================================== #
-#  alacritty - alacritty.yml                                               #
+#  alacritty - alacritty.toml                                              #
 #  Maintainer: sungyoonc                                                   #
 # ======================================================================== #
 #                                                                          #
@@ -15,16 +15,19 @@
 # ======================================================================== #
 
 # Theme
-import: 
-  - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
-font:
-  normal:
-    family: JetbrainsMono Nerd Font
-    style: Regular
-  bold:
-    family: JetbrainsMono Nerd Font
-    style: Bold
-  bold:
-    family: JetbrainsMono Nerd Font
-    style: Italic
-  size: 11
+import = ["/home/fox/.config/alacritty/catppuccin/catppuccin-frappe.toml"]
+
+[font]
+size = 11
+
+[font.bold]
+family = "JetbrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetbrainsMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "JetbrainsMono Nerd Font"
+style = "Regular"
