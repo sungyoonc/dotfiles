@@ -17,3 +17,7 @@ fi
 
 # Bob: Version manager for Neovim
 PATH=$PATH:$HOME/.local/share/bob/nvim-bin
+
+# Flatpak
+PATH=$PATH:/var/lib/flatpak/exports/share
+PATH=$PATH:$HOME/.local/share/flatpak/exports/share
