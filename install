@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+stow() {
+    $(which stow) "$@" 2> >(grep -v 'BUG in find_stowed_path? Absolute/relative mismatch' 1>&2)
+}
+
 stow --restow --no-folding --target=$HOME */
 
 pushd .images > /dev/null
