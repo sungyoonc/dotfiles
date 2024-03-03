@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Clone and setup bare repository.
+
+set -e
+
+repo=${1? "Usage: $0 <repo> [<dir>] [<git_dir>]"}
+repo_name=$(basename "$repo")
+dir=${2:-${repo_name%.*}}
+git_dir=${3:-"${repo_name%.git}.git"}
+
+git clone --bare "$repo" "$dir/$git_dir"
+
+echo "gitdir: $git_dir" > "$dir/.git"
+
+# Explicitly set the remote origin fetch
+git -C "$dir" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+
+# Get all branches from origin
+git -C "$dir" fetch origin

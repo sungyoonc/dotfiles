@@ -24,3 +24,6 @@ PATH=$PATH:$HOME/.local/share/bob/nvim-bin
 # Flatpak
 PATH=$PATH:/var/lib/flatpak/exports/share
 PATH=$PATH:$HOME/.local/share/flatpak/exports/share
+
+# local scripts
+PATH=$PATH:$HOME/.local/scripts
