@@ -22,3 +22,6 @@ PATH=$PATH:$HOME/.local/share/flatpak/exports/share
 
 # local scripts
 PATH=$PATH:$HOME/.local/scripts
+
+# Set up mise shims
+eval "$(mise activate --shims)"
