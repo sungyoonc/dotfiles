@@ -3,11 +3,6 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
     export MOZ_ENABLE_WAYLAND=1
 fi
 
-# Setup kime
-export GTK_IM_MODULE=kime
-export QT_IM_MODULE=kime
-export SDL_IM_MODULE=kime
-
 # Intellij IDEA fix
 # - https://github.com/swaywm/sway/issues/595
 # $XDG_SESSION_DESKTOP doesn't seem to be set for sway
