@@ -66,6 +66,7 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 # ------------- #
 
 # Alias
+alias ssh='TERM=xterm-256color ssh' # Fix weird bracketed paste behaviour even when term info was added.
 alias ls='ls --color=auto'
 alias ll='ls -lav --ignore=..'   # show long listing of all except ".."
 alias l='ls -lav --ignore=".?*"'   # show long listing but no hidden dotfiles except "."
