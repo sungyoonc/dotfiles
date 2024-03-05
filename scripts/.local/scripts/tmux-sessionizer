@@ -8,7 +8,7 @@ else
         find ~/school -mindepth 1 -maxdepth 2 -type d -path '*/[0-9]-[0-9]*'
         find ~/.dotfiles ~/school -maxdepth 0 -type d
     )
-    selected=$(echo "$fzf_list" | fzf)
+    selected=$(echo "$fzf_list" | fzf --cycle --bind 'change:first,tab:up,btab:down')
 fi
 
 if [ -z $selected ]; then
