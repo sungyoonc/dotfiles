@@ -57,6 +57,9 @@ zinit light zsh-users/zsh-completions
 # - suggestion
 zinit ice wait lucid blockf atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
+# - completion
+zinit ice blockf
+zinit light zsh-users/zsh-completions
 # - docker completion
 zinit ice as"completion"
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
