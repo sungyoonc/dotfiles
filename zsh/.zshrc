@@ -27,6 +27,10 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Enable completion menu
+zstyle ':completion:*' menu select
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+
 autoload -U colors && colors
 # Expand variables and commands in PROMPT variables
 setopt prompt_subst
