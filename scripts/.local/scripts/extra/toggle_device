@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+is_enabled() {
+    status=$(hyprctl getoption "device:${device_name}:enabled" | grep int | awk -F ':' '{ gsub(/ /, "", $2); print $2}')
+    if [ "$status" -eq "1" ]; then
+        return 0 # Device is enabled
+    fi
+    if [ "$status" -eq "0" ]; then
+        return 1 # Device is disabled
+    fi
+    >&2 echo "Failed to get device status"
+    exit 1
+}
+
+enable_device() {
+    notify-send -u normal "Enabled ${display_name}" --category="device"
+    hyprctl keyword "device:${device_name}:enabled" true >/dev/null
+}
+
+disable_device() {
+    notify-send -u normal "Disaled ${display_name}" --category="device"
+    hyprctl keyword "device:${device_name}:enabled" false >/dev/null
+}
+
+device_name="${1? "Usage: $0 <device name> <display name>"}"
+display_name="${2? "Usage: $0 <device name> <display name>"}"
+
+# Toggle state
+if is_enabled; then
+    disable_device
+else
+    enable_device
+fi
