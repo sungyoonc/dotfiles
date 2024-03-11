@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+fcitx5-remote -e && fcitx5 -d
