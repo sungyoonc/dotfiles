@@ -84,6 +84,7 @@ function check_nightly_update {
 
     # Show git log (github api is ratelimited)
     if ! "$skip_dialog"; then
+        # More about color color and style setting: https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_(Control_Sequence_Introducer)_sequences
         curl -s "https://api.github.com/repos/neovim/neovim/compare/${current_version}...${latest_version}" | jq -r '.commits[] | .commit | (.message |= gsub("\n"; "\n│ ")) | "├╴\u001b[1;32m" + .author.name + "\u001b[0m " + .message' | less -RXF
         # Show yes/no dialog
         printf 'Updating neovim from %s to %s...\n' $current_version $latest_version
