@@ -11,7 +11,7 @@ stow --restow --no-folding --target=$HOME */
 popd > /dev/null
 
 pushd .keyd > /dev/null
-echo "** Root permission for keyd config."
+>&2 echo "** Root permission for keyd config."
 sudo stow --restow --no-folding --target=/etc/keyd system_config
 stow --restow --no-folding --target=$HOME user_config
 popd >/dev/null
