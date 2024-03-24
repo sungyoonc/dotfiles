@@ -18,11 +18,16 @@ if [ -z $selected ]; then
     exit 0
 fi
 
+# Expand the selected path
+selected="$(realpath -s "$selected")"
+
+# Get the name for the session
 if [ $# -eq 2 ]; then
     selected_name="$(echo $2 | tr .: _)"
 else
-    selected_name=$(basename "$(realpath -s "$selected")" | tr ".:" "__")
+    selected_name=$(basename "$selected" | tr ".:" "__")
 fi
+
 tmux_running=$(pgrep tmux)
 
 if [ -z "$TMUX" ] && [ -z "$tmux_running" ]; then
