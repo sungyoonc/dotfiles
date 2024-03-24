@@ -1,29 +1,38 @@
 #!/usr/bin/env bash
 
 is_enabled() {
-    status=$(hyprctl getoption "device:${device_name}:enabled" | grep int | awk -F ':' '{ gsub(/ /, "", $2); print $2}')
-    if [ "$status" -eq "1" ]; then
-        return 0 # Device is enabled
-    fi
-    if [ "$status" -eq "0" ]; then
-        return 1 # Device is disabled
+    # Make temp state for device
+    status=$(cat "${temp_file}")
+    if [ "$status" == "false" ]; then # Device is disabled
+        return 1
+    else # Assume device is enabled
+        return 0
     fi
     >&2 echo "Failed to get device status"
     exit 1
 }
 
 enable_device() {
-    notify-send -u normal "Enabled ${display_name}" --category="device"
-    hyprctl keyword "device:${device_name}:enabled" true >/dev/null
+    notify-send -u normal --category="device" "${text_icon_enable} Enabled ${display_name}"
+    printf true >"$temp_file"
+    hyprctl keyword "\$${device_var_name}" "true" -r
 }
 
 disable_device() {
-    notify-send -u normal "Disaled ${display_name}" --category="device"
-    hyprctl keyword "device:${device_name}:enabled" false >/dev/null
+    notify-send -u normal --category="device" "${text_icon_disable} Disaled ${display_name}"
+    printf false >"$temp_file"
+    hyprctl keyword "\$${device_var_name}" "false" -r
 }
 
-device_name="${1? "Usage: $0 <device name> <display name>"}"
-display_name="${2? "Usage: $0 <device name> <display name>"}"
+device_var_name="${1? "Usage: $0 <device_var_name> <display_name> [<text_icon_enable>] [<text_icon_disable>]"}"
+display_name="${2? "Usage: $0 <device_var_name> <display_name> [<text_icon_enable>] [<text_icon_disable>]"}"
+text_icon_enable="${3:-""}"
+text_icon_disable="${4:-""}"
+
+temp_file="/tmp/toggle_device_$device_var_name"
+if [ ! -f "$temp_file" ]; then
+    printf true >"$temp_file"
+fi
 
 # Toggle state
 if is_enabled; then
