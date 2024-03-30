@@ -2,6 +2,8 @@
 # ~/.bash_profile
 #
 
+LANG=en_US.UTF-8
+
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # Enable firefox wayland
