@@ -1,8 +1,8 @@
 {
-    "layer": "top",
+    "layer": "bottom",
     "modules-left": [
         "custom/launcher",
-        "sway/workspaces",
+        // "sway/workspaces",
         "hyprland/workspaces",
         // "sway/mode",
         "memory",
@@ -31,9 +31,9 @@
         "format": "蘒 {}",
         "tooltip": false
     },
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true
         //"format": "{icon}",
         //"persistent_workspaces": {
         //	"1": [],
@@ -44,7 +44,7 @@
         //"format-icons": {
         //   "urgent": " 𥉉"
         //}
-    },
+    // },
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true
