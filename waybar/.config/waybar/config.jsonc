@@ -34,16 +34,16 @@
     // "sway/workspaces": {
     //     "disable-scroll": true,
     //     "all-outputs": true
-        //"format": "{icon}",
-        //"persistent_workspaces": {
-        //	"1": [],
-        //	"2": [],
-        //	"3": [],
-        //	"4": []
-        //},
-        //"format-icons": {
-        //   "urgent": " 𥉉"
-        //}
+    //"format": "{icon}",
+    //"persistent_workspaces": {
+    //	"1": [],
+    //	"2": [],
+    //	"3": [],
+    //	"4": []
+    //},
+    //"format-icons": {
+    //   "urgent": " 𥉉"
+    //}
     // },
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -72,7 +72,10 @@
         "tooltip": false
     },
     "temperature": {
-        "hwmon-path": "/sys/class/hwmon/hwmon8/temp1_input",
+        "hwmon-path": [
+            "/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input",
+            "/sys/devices/platform/coretemp.0/hwmon/hwmon8/temp1_input"
+        ],
         "critical-threshold": 80,
         "interval": 1,
         "format": "󰔏 {temperatureC}°C",
@@ -143,10 +146,10 @@
     "network": {
         "interval": 1,
         "format-wifi": "󰤨 {essid}",
-        "format-ethernet": "󰛳 {ifname} ({ipaddr})",
+        "format-ethernet": "󰛳 ({ipaddr})",
         "format-linked": "󰐚 {essid} (No IP)",
         "format-disconnected": "󰅛 Disconnected",
-        "format-alt": "  {ifname} ({ipaddr})",
+        "format-alt": "󰛳 {ifname} ({ipaddr})",
         "tooltip": false
         // "on-click": "exec ~/.config/waybar/scripts/rofi-wifi-menu.sh"
     },
