@@ -8,7 +8,8 @@ repo_name=$(basename "$repo")
 dir=${2:-${repo_name%.*}}
 git_dir=${3:-"${repo_name%.git}.git"}
 
-git clone --bare "$repo" "$dir/$git_dir"
+# FIXME: add -r --recurse arg
+git clone --bare "$repo" "$dir/$git_dir" --recurse
 
 echo "gitdir: $git_dir" > "$dir/.git"
 
