@@ -30,6 +30,7 @@ no=' No'
 # Rofi CMD
 rofi_cmd() {
     rofi -dmenu \
+        -scroll-method 0 \
         -p "$host" \
         -mesg "Uptime: $uptime" \
         -theme ${dir}/${theme}.rasi
@@ -44,13 +45,13 @@ confirm_cmd() {
         -theme-str 'textbox {horizontal-align: 0.5;}' \
         -dmenu \
         -p 'Confirmation' \
-        -mesg 'Are you Sure?' \
+        -mesg "Confirm $1?" \
         -theme ${dir}/${theme}.rasi
 }
 
 # Ask for confirmation
 confirm_exit() {
-    echo -e "$yes\n$no" | confirm_cmd
+    echo -e "$yes\n$no" | confirm_cmd "$1"
 }
 
 # Pass variables to rofi dmenu
@@ -60,24 +61,24 @@ run_rofi() {
 
 # Execute Command
 run_cmd() {
-    selected="$(confirm_exit)"
+    selected="$(confirm_exit "$1")"
     if [[ "$selected" == "$yes" ]]; then
-        if [[ $1 == '--shutdown' ]]; then
+        if [[ $1 == 'Shutdown' ]]; then
             systemctl poweroff
-        elif [[ $1 == '--reboot' ]]; then
+        elif [[ $1 == 'Reboot' ]]; then
             systemctl reboot
-        elif [[ $1 == '--suspend' ]]; then
+        elif [[ $1 == 'Suspend' ]]; then
             # mpc -q pause
             amixer set Master mute
             systemctl suspend
-        elif [[ $1 == '--hibernate' ]]; then
+        elif [[ $1 == 'Hibernate' ]]; then
             systemctl hibernate
-        elif [[ $1 == '--logout' ]]; then
+        elif [[ $1 == 'Logout' ]]; then
             if [[ "$XDG_CURRENT_DESKTOP" == 'Hyprland' ]]; then
                 # close all client windows
                 # required for graceful exit since many apps aren't good SIGNAL citizens
                 HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
-                hyprctl --batch "$HYPRCMDS" >>/tmp/hypr/hyprexitwithgrace.log 2>&1
+                hyprctl --batch "$HYPRCMDS" >>$XDG_RUNTIME_DIR/hypr/hyprexitwithgrace.log 2>&1
 
                 # exit hyprland
                 # loginctl kill-user $(whoami) >>/tmp/hypr/hyprexitwithgrace.log 2>&1
@@ -92,34 +93,34 @@ run_cmd() {
                 qdbus org.kde.ksmserver /KSMServer logout 0 0 0
             fi
         fi
-    else
-        exit 0
+        exit 1
     fi
+    exit 0
 }
 
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
 $shutdown)
-    run_cmd --shutdown
+    run_cmd Shutdown
     ;;
 $reboot)
-    run_cmd --reboot
+    run_cmd Reboot
     ;;
 $lock)
-    if [[ -x '/usr/bin/betterlockscreen' ]]; then
-        betterlockscreen -l
+    if [[ -x '/usr/bin/hyprlock' ]]; then
+        hyprlock
     elif [[ -x '/usr/bin/swaylock' ]]; then
         swaylock
     fi
     ;;
 $suspend)
-    run_cmd --suspend
+    run_cmd Suspend
     ;;
 $hibernate)
-    run_cmd --hibernate
+    run_cmd Hibernate
     ;;
 $logout)
-    run_cmd --logout
+    run_cmd Logout
     ;;
 esac

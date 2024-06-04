@@ -9,7 +9,7 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun,run,filebrowser,window";
+    modi:                       "drun,run,filebrowser,window";
     show-icons:                 true;
     display-drun:               "  Apps";
     display-run:                "  Run";
@@ -17,6 +17,7 @@ configuration {
     display-window:             "  Windows";
 	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
+    cycle: false;
 }
 
 /*****----- Global Properties -----*****/
@@ -161,7 +162,7 @@ listview {
     lines:                       8;
     cycle:                       true;
     dynamic:                     true;
-    scrollbar:                   false;
+    scrollbar:                   true;
     layout:                      vertical;
     reverse:                     false;
     fixed-height:                true;
@@ -307,4 +308,40 @@ error-message {
     border-color:                @border-colour;
     background-color:            @background-colour;
     text-color:                  @foreground-colour;
+}
+
+configuration {
+    // Remove Already Duplicate Keys
+    kb-remove-to-sol: "";
+    kb-remove-char-forward: "Delete";
+    kb-remove-char-back: "BackSpace,Shift+BackSpace";
+    kb-mode-complete: "";
+    kb-accept-entry: "Control+m,Return,KP_Enter";
+    kb-remove-to-eol: "";
+
+    // Vim Motion
+    kb-row-down: "Down,Control+n,Alt+j";
+    kb-row-up: "Up,Control+p,Alt+k";
+
+    kb-move-char-back: "Control+b,Alt+h";
+    kb-move-char-forward: "Control+f,Alt+l";
+
+    kb-row-left: "Left,Control+u";
+    kb-row-right: "Right,Control+d";
+
+    kb-custom-1: "Control+j";
+    kb-custom-2: "Control+k";
+    kb-custom-3: "Control+l";
+    kb-custom-4: "Control+[47]"; // Control+Semicolon
+    kb-custom-5: "";
+    kb-custom-6: "";
+    kb-custom-7: "";
+    kb-custom-8: "";
+    kb-custom-9: "";
+    kb-custom-10: "";
+    kb-custom-11: "";
+    kb-custom-12: "";
+    kb-custom-13: "";
+    kb-custom-14: "";
+    kb-custom-15: "";
 }
