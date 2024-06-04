@@ -1,0 +1,12 @@
+[global]
+overload_tap_timeout = 250
+
+[main]
+# Maps Fn + F5(LCtrl + LWin + Strange Key) to KEY_ZOOM(to map this to toggle touchpad)
+leftmeta+leftcontrol+zenkakuhankaku = zoom
+
+# Maps capslock to escape when pressed and control when held.
+capslock = overload(control, esc)
+
+# Remaps the escape key to capslock
+leftcontrol = capslock
