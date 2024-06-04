@@ -3,19 +3,28 @@
 if [ $# -gt 0 ]; then
     selected=$(find "$1" -maxdepth 0 -type d 2>/dev/null | sed -n '1p')
 else
-    fzf_list=$(
+    # tmux_list=$(tmux list-session -F '#{session_path}' 2>/dev/null | sort | uniq -u)
+
+    # Add directory specific dirs to find_list
+    if [ -f "./.tms" ]; then
+        find_list=$(
+            jq -r '.list.dirs[]' ".tms" 2>/dev/null | xargs -I _ find _ -maxdepth 0 -type d 2>/dev/null
+        )
+        if [ -n "$find_list" ]; then
+            find_list+=$'\n'
+        fi
+    fi
+    find_list+=$(
         find ~/personal -mindepth 0 -maxdepth 1 -type d
-        # `-name ".*" -prune`: matches file/dir that didn't start with a dot
-        # `-o -print`: print if the previous expression did not match
         find ~/syncthing/Notes -mindepth 1 -maxdepth 1 -type d -name ".*" -prune -o -print
         find ~/school -mindepth 1 -maxdepth 2 -type d -path '*/[0-9]-[0-9]*'
         find ~/.dotfiles ~/school -maxdepth 0 -type d
     )
-    selected=$(echo "$fzf_list" | fzf --cycle --bind 'change:first,tab:up,btab:down')
+    selected=$(echo "$find_list" | fzf --scheme=path --cycle --bind 'change:first,tab:up,btab:down')
 fi
 
-if [ -z $selected ]; then
-    exit 0
+if [ -z "$selected" ]; then
+    exit 1
 fi
 
 # Expand the selected path
